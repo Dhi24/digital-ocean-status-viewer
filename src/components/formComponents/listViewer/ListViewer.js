@@ -6,13 +6,13 @@ function ListViewer(props) {
   const listElement =
     lstData &&
     lstData.map((options) => {
-      const { name, status } = options;
+      const { name, status, created_at } = options;
       return (
         <tr>
           <td>{name}</td>
           <td>{status}</td>
-          {/* <td>{created_at}</td>
-          <td>{updated_at}</td> */}
+          <td>{created_at}</td>
+          {/* <td>{updated_at}</td> */}
         </tr>
       );
     });
@@ -23,8 +23,8 @@ function ListViewer(props) {
         <tr>
           <th>Name</th>
           <th>Status</th>
-          {/* <th>Created On</th>
-          <th>Updated On</th> */}
+          <th>Created On</th>
+          {/* <th>Updated On</th> */}
         </tr>
         {listElement}
       </table>
