@@ -28,7 +28,7 @@ function Incidents(props) {
   return (
     <div>
       <div class="d-flex justify-content-end">
-        <Button variant="link" onClick={() => getIncidentsData()}>
+        <Button variant="primary" onClick={() => getIncidentsData()}>
           Refresh
         </Button>
       </div>

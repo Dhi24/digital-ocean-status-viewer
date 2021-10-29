@@ -28,7 +28,7 @@ function Summary(props) {
   return (
     <div>
       <div class="d-flex justify-content-end">
-        <Button variant="link" onClick={() => getSummaryData()}>
+        <Button variant="primary" onClick={() => getSummaryData()}>
           Refresh
         </Button>
       </div>
