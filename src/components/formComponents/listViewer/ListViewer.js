@@ -1,4 +1,5 @@
 import React from "react";
+import { Table } from "react-bootstrap";
 
 function ListViewer(props) {
   const { lstData } = props;
@@ -6,28 +7,32 @@ function ListViewer(props) {
   const listElement =
     lstData &&
     lstData.map((options) => {
-      const { name, status, created_at } = options;
+      const { name, status } = options;
       return (
-        <tr>
-          <td>{name}</td>
-          <td>{status}</td>
-          <td>{created_at}</td>
-          {/* <td>{updated_at}</td> */}
-        </tr>
+        <tbody>
+          <tr>
+            <td>{name}</td>
+            <td>{status}</td>
+            {/* <td>{created_at}</td>
+          <td>{updated_at}</td> */}
+          </tr>
+        </tbody>
       );
     });
 
   return (
     <div>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Status</th>
-          <th>Created On</th>
-          {/* <th>Updated On</th> */}
-        </tr>
+      <Table responsive hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            {/* <th>Created On</th>
+          <th>Updated On</th> */}
+          </tr>
+        </thead>
         {listElement}
-      </table>
+      </Table>
     </div>
   );
 }

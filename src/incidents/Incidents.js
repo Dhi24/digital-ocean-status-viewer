@@ -1,39 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 
+import tableSkeletonLoading from "../utility/jsFunctions";
 import ListViewer from "./../components/formComponents/listViewer/ListViewer";
 import "./../incidents/Incidents.css";
 import getIncidentsById from "../api/apiService/Incidents.apiService";
 
 function Incidents(props) {
+  const [isLoading, setLoading] = useState(true);
   const [dataIncidents, setIncidents] = useState(null);
 
   const lstData = dataIncidents && dataIncidents.incidents;
 
   const getIncidentsData = () => {
+    setLoading(true);
     getIncidentsById().then((res) => {
       setIncidents(res);
+      setLoading(false);
     });
   };
 
-  setTimeout(function () {
-    getIncidentsData();
-  }, 300000);
-
   useEffect(() => {
     getIncidentsData();
+    setInterval(() => {
+      getIncidentsData();
+    }, 30000);
     return () => {};
   }, []);
 
   return (
     <div>
       <div class="d-flex justify-content-end">
-        <Button variant="primary" onClick={() => getIncidentsData()}>
+        <Button variant="link" onClick={() => getIncidentsData()}>
           Refresh
         </Button>
       </div>
       <div>
-        <ListViewer lstData={lstData} />
+        {isLoading ? tableSkeletonLoading() : <ListViewer lstData={lstData} />}
       </div>
     </div>
   );
